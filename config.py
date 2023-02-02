@@ -18,7 +18,8 @@ config.TRAIN.lr_decay = 0.1
 config.TRAIN.decay_every = int(config.TRAIN.n_epoch / 2)
 
 ## train set location
-config.TRAIN.hr_img_path = 'DIV2K/DIV2K_train_HR/'
+# config.TRAIN.hr_img_path = 'DIV2K/DIV2K_train_HR/'
+config.TRAIN.hr_img_path = 'images/'
 config.TRAIN.lr_img_path = 'DIV2K/DIV2K_train_LR_bicubic/X4/'
 
 config.VALID = edict()
