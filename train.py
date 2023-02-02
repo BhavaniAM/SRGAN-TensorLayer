@@ -155,7 +155,6 @@ def train():
             step_time = time.time()
             loss_g = trainforG(lr_patch, hr_patch)
             loss_d = trainforD(lr_patch, hr_patch)
-            print(
                 "Epoch: [{}/{}] step: [{}/{}] time: {:.3f}s, g_loss:{:.3f}, d_loss: {:.3f}".format(
                     epoch, n_epoch, step, n_step_epoch, time.time() - step_time, float(loss_g), float(loss_d)))
         # dynamic learning rate update
