@@ -128,7 +128,7 @@ def make_layers(config, batch_norm=False, end_with='outputs'):
                 layer_list.append(
                     Conv2d(
                         out_channels=n_filter, kernel_size=(3, 3), stride=(1, 1), act=tlx.ReLU, padding='SAME',
-                        in_channels=in_channels, name=layer_name, data_format='channels_last'
+                        in_channels=in_channels, name=layer_name, data_format='channels_first'
                     )
                 )
                 if batch_norm:
