@@ -104,8 +104,8 @@ class VGG(Module):
 
 #         inputs = inputs * 255 - np.array([123.68, 116.779, 103.939], dtype=np.float32).reshape([1, 1, 1, 3])
         print("inputs shape = ", inputs.shape)
-       # inputs = inputs * 255. - tlx.convert_to_tensor(np.array([123.68, 116.779, 103.939], dtype=np.float32).reshape(-1,1,1))
-        inputs = inputs * 255. - tlx.convert_to_tensor(np.array([123.68, 116.779, 103.939], dtype=np.float32))
+        inputs = inputs * 255. - tlx.convert_to_tensor(np.array([123.68, 116.779, 103.939], dtype=np.float32).reshape(-1,1,1))
+        #inputs = inputs * 255. - tlx.convert_to_tensor(np.array([123.68, 116.779, 103.939], dtype=np.float32))
         out = self.make_layer(inputs)
         return out
 
@@ -132,14 +132,14 @@ def make_layers(config, batch_norm=False, end_with='outputs'):
                     )
                 )
                 if batch_norm:
-                    layer_list.append(BatchNorm(num_features=n_filter, data_format='channels_last'))
+                    layer_list.append(BatchNorm(num_features=n_filter, data_format='channels_first'))
                 if layer_name == end_with:
                     is_end = True
                     break
         else:
             layer_name = layer_names[layer_group_idx]
             if layer_group == 'M':
-                layer_list.append(MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding='SAME', name=layer_name, data_format='channels_last'))
+                layer_list.append(MaxPool2d(kernel_size=(2, 2), stride=(2, 2), padding='SAME', name=layer_name, data_format='channels_first'))
             elif layer_group == 'O':
                 layer_list.append(Linear(out_features=1000, in_features=4096, name=layer_name))
             elif layer_group == 'F':
